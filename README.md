@@ -9,6 +9,14 @@ Production-grade travel data pipeline: CSV → ETL → Neon PostgreSQL → Analy
 - PostgreSQL warehouse (Neon)  
 - Logging & validation
 
+CSV / S3
+   ↓
+Python ETL (validation + logging)
+   ↓
+PostgreSQL (warehouse)
+   ↓
+Analytics & monitoring
+
 **Tools & Stack:**  
 - Python, Pandas  
 - Neon PostgreSQL  
