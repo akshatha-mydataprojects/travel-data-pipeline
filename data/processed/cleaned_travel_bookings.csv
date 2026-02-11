@@ -1,0 +1,4 @@
+booking_id,user_id,destination,booking_date,travel_date,price,currency,booking_status
+1,101,Miami,2026-02-10,2026-03-05,350,USD,confirmed
+2,102,Washington,2026-02-11,2026-03-10,420,USD,cancelled
+3,103,Seattle,2026-02-12,2026-03-15,280,USD,confirmed
