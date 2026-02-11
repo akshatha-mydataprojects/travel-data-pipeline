@@ -87,6 +87,8 @@ travel-data-pipeline/
 
 ##  How to Run
 
+pip install -r requirements.txt
+
 Activate virtual environment:
 
 ```
