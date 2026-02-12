@@ -5,6 +5,7 @@
 This project was built as part of my transition back into Data Engineering, leveraging my prior experience in SQL database administration and Azure SQL cloud support.  
 
 It simulates a real-world use case for a global online travel booking company and demonstrates production-style ETL design using Python and a cloud-hosted PostgreSQL data warehouse (Neon).
+
 ---
 
 ##  Business Scenario
