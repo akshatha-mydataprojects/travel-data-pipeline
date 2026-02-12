@@ -24,7 +24,7 @@ The goal is to simulate a real-world data engineering workflow using modular arc
 
 ##  Architecture
 
-Raw CSV → Data Validation and cleaning → Transformation- Currency Standardization (EUR, GBP → USD) → Processed CSV → PostgreSQL (Neon Cloud)
+Raw CSV → Data Validation and cleaning → Transformation- Currency Standardization (EUR, GBP → USD) → Processed CSV → PostgreSQL (Neon Cloud) → Generate Reports
 
 ```
 data/raw/
@@ -56,15 +56,15 @@ Generate Analytical Reports
 
 ##  Pipeline Features
 
-✔ Modular project structure (ingest / transform / load / utils) 
-✔ CSV ingestion (supports large datasets – 200+ records tested)
-✔ Data validation checks  
-✔ Duplicate removal  
-✔ Standardized formatting- Currency standardization to USD 
-✔ Idempotent inserts using PostgreSQL `ON CONFLICT`  
-✔ Timestamped logging for monitoring  
-✔ Automated analytical report generation
-✔ Separation of credentials using config.yaml 
+- Modular project structure (ingest / transform / load / utils) 
+- CSV ingestion (supports large datasets – 200+ records tested)
+- Data validation checks  
+- Duplicate removal  
+- Standardized formatting- Currency standardization to USD 
+- Idempotent inserts using PostgreSQL `ON CONFLICT`  
+- Timestamped logging for monitoring  
+- Automated analytical report generation
+- Separation of credentials using config.yaml 
 
 
 ---
