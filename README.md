@@ -10,15 +10,7 @@ It simulates a real-world use case for a global online travel booking company an
 
 ##  Business Scenario
 
-A company receives daily booking data extracts from multiple regional systems in CSV format. These datasets contain bookings in different currencies (USD, EUR, GBP) and lack centralized reporting.
-
-###  Business Challenges
-
-- Booking data arrives as raw CSV files from multiple sources  
-- Prices are stored in different currencies  
-- No centralized warehouse for analytics  
-- Finance team struggles with accurate USD revenue reporting  
-- Leadership lacks visibility into destination performance  
+The company receives daily booking data exports from multiple regions, in different currencies (USD, EUR, GBP), and lacks centralized reporting. Finance struggles to calculate total revenue in USD, and leadership cannot track destination performance or monthly booking trends reliably.
 
 ###  Objective
 
@@ -29,6 +21,18 @@ The objective is to:
 - Validate and clean incoming datasets  
 - Enable automated analytical reporting  
 - Provide business-ready insights such as revenue by destination and monthly booking trends  
+
+##  How the Pipeline Solves It
+
+The pipeline addresses the business challenges as follows:
+
+- **Centralized Data**: Ingests raw CSVs from multiple regions into a single Neon PostgreSQL warehouse  
+- **Data Validation & Cleaning**: Removes duplicates, ensures correct date formats, and checks for missing critical values  
+- **Currency Standardization**: Converts EUR and GBP to USD for consistent revenue calculations  
+- **Automated Reporting**: Generates analytical summaries such as revenue per destination, monthly bookings, top destinations, and booking status distribution  
+- **Logging & Monitoring**: Tracks ETL execution to ensure reliability and reproducibility  
+
+This allows business stakeholders to make **data-driven decisions**, monitor **destination performance**, and accurately **track revenue trends** in USD.
 
 ---
 ##  Project Overview
@@ -199,18 +203,6 @@ LIMIT 5;
 
 ---
 
-##  What This Demonstrates
-
-- Cloud database integration
-- End-to-end Data pipeline design
-- SQL schema creation
-- Data transformation using Pandas
-- Logging & monitoring
-- Production-style project structuring
-- Analytical reporting automation  
-- Version control using Git
-
----
 
 ##  Future Enhancements
 
