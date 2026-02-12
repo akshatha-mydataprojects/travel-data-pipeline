@@ -1,13 +1,35 @@
-#  Cloud Travel Data ETL Pipeline (Python + PostgreSQL)
+#  End-to-End ETL Pipeline for Travel Booking Data (Python + PostgreSQL)
 
 ##  Professional Context
 
 This project was built as part of my transition back into Data Engineering, leveraging my prior experience in SQL database administration and Azure SQL cloud support.  
 
-It demonstrates production-style ETL design principles using Python and a cloud-hosted PostgreSQL data warehouse (Neon).
-
+It simulates a real-world use case for a global online travel booking company and demonstrates production-style ETL design using Python and a cloud-hosted PostgreSQL data warehouse (Neon).
 ---
 
+##  Business Scenario
+
+A company receives daily booking data extracts from multiple regional systems in CSV format. These datasets contain bookings in different currencies (USD, EUR, GBP) and lack centralized reporting.
+
+###  Business Challenges
+
+- Booking data arrives as raw CSV files from multiple sources  
+- Prices are stored in different currencies  
+- No centralized warehouse for analytics  
+- Finance team struggles with accurate USD revenue reporting  
+- Leadership lacks visibility into destination performance  
+
+###  Objective
+
+The objective is to:
+
+- Centralize raw booking data into a cloud data warehouse  
+- Standardize all prices into USD  
+- Validate and clean incoming datasets  
+- Enable automated analytical reporting  
+- Provide business-ready insights such as revenue by destination and monthly booking trends  
+
+---
 ##  Project Overview
 
 This project implements an end-to-end ETL (Extract, Transform, Load) pipeline that:
@@ -16,15 +38,13 @@ This project implements an end-to-end ETL (Extract, Transform, Load) pipeline th
 - Validates and cleans the data  
 - Saves processed data for auditability  
 - Loads structured data into Neon PostgreSQL  
-- Implements logging and idempotent database inserts  
-
-The goal is to simulate a real-world data engineering workflow using modular architecture and cloud infrastructure.
+- Implements logging and idempotent database inserts
+- Generates Analytical reports  
 
 ---
-
 ##  Architecture
 
-Raw CSV → Data Validation and cleaning → Transformation- Currency Standardization (EUR, GBP → USD) → Processed CSV → PostgreSQL (Neon Cloud) → Generate Reports
+Raw CSV → Data Validation → Cleaning and Transformation → Processed CSV → PostgreSQL (Neon Cloud) → Generate Analytical Reports
 
 ```
 data/raw/
@@ -48,24 +68,23 @@ Generate Analytical Reports
 - Pandas
 - SQL 
 - PostgreSQL (Neon Cloud)   
-- YAML configuration management  
-- Git & GitHub  
-- Python logging module  
+- YAML configuration management    
+- Python logging module
+- Git & GitHub 
 
 ---
 
 ##  Pipeline Features
 
 - Modular project structure (ingest / transform / load / utils) 
-- CSV ingestion (supports large datasets – 200+ records tested)
+- CSV ingestion (supports large datasets)
 - Data validation checks  
 - Duplicate removal  
-- Standardized formatting- Currency standardization to USD 
+- Standardized formatting- Currency Standardization (EUR, GBP → USD) 
 - Idempotent inserts using PostgreSQL `ON CONFLICT`  
 - Timestamped logging for monitoring  
 - Automated analytical report generation
 - Separation of credentials using config.yaml 
-
 
 ---
 
@@ -137,9 +156,10 @@ Activate virtual environment:
 ```
 venv\Scripts\activate
 ```
-To Configure database connection
+To Configure database connection:
 
 Create a file:
+
 src/utils/config.py
 
 Add your Neon credentials:
@@ -168,9 +188,12 @@ python -m src.load.load_summary
 ```sql
 SELECT COUNT(*) FROM travel_bookings;
 
-SELECT * 
-FROM travel_bookings 
-WHERE booking_status = 'confirmed';
+SELECT destination, COUNT(*) AS booking_count
+FROM travel_bookings
+GROUP BY destination
+ORDER BY booking_count DESC
+LIMIT 5;
+
 ```
 
 ---
